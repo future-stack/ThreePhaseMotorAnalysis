@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import * as motorAnalyzeService from './service/MotorAnalyzeService';
+import * as motorAnalyzeService from './service/motorAnalyzeService';
 
 const PORT = 8080;
 
