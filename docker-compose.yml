@@ -1,0 +1,25 @@
+version: '3'
+services:
+  three-phase-motor-analysis-app:
+    image: node
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+    command: bash -c "npm install && npm start"
+    ports:
+      - "3002:8080"
+    depends_on:
+      - analysis_database
+    env_file:
+      - .env
+  analysis_database:
+    container_name: common_db
+    image: postgres
+    environment:
+      POSTGRES_USER: common_db
+      POSTGRES_PASSWORD: common_db
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
